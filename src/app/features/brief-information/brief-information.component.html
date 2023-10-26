@@ -1,0 +1,68 @@
+<ng-container *ngIf="loading">
+  <app-loader></app-loader>
+</ng-container>
+
+<div *ngIf="calculatedData$ | async as data" class="container">
+  <h2 class="mt-4">Коротка інформація</h2>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <app-brief-information-field
+        [title]="'Загальна кількість виданих кредитів по місяцях'"
+        [data]="data.totalCredits">
+      </app-brief-information-field>
+    </div>
+    <div class="col-md-4">
+      <app-brief-information-field
+        [title]="'Середня сума видачі кредитів по місяцях'"
+        [data]="data.averageCreditAmount">
+      </app-brief-information-field>
+    </div>
+    <div class="col-md-4">
+      <app-brief-information-field
+        [title]="'Загальна сума видачі кредитів по місяцях'"
+        [data]="data.totalCreditAmount">
+      </app-brief-information-field>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <app-brief-information-field
+        [title]="'Загальна сума нарахованих відсотків по місяцях'"
+        [data]="data.totalPercent">
+      </app-brief-information-field>
+    </div>
+    <div class="col-md-4">
+      <app-brief-information-field
+        [title]="'Кількість виданих кредитів по місяцях'"
+        [data]="data.totalIssuedCredits">
+      </app-brief-information-field>
+    </div>
+    <div class="col-md-4">
+      <app-brief-information-field
+        [title]="'Кількість повернених кредитів по місяцях'"
+        [data]="data.totalReturnedCredits">
+      </app-brief-information-field>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-4" *ngIf="topNumberOfCredits$ | async as top">
+      <app-brief-information-field
+        [title]="'Топ 10 користувачів по кількості отриманих кредитів'"
+        [top]="top">
+      </app-brief-information-field>
+    </div>
+    <div class="col-md-4" *ngIf="topPaidPercent$ | async as top">
+      <app-brief-information-field
+        [title]="'Топ-10 користувачів за сумою сплачених відсотків для повернутих кредитів'"
+        [top]="top">
+      </app-brief-information-field>
+    </div>
+    <div class="col-md-4" *ngIf="topRatioBodyPercent$ | async as top">
+      <app-brief-information-field
+        [title]="'Топ-10 користувачів з найбільшим співвідношенням суми виданих кредитів до суми сплачених відсотків для повернутих кредитів'"
+        [top]="top">
+      </app-brief-information-field>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+a {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
+
+@media( max-width: 560px ) {
+  li {
+    width: 25px;
+
+    a {
+      padding: 2px;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
+
+

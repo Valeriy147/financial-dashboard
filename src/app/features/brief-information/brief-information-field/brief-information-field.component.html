@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <div class="card-text">
+      <ng-container *ngIf="data">
+        <p *ngFor="let dataItem of data">
+          {{ dataItem.month }}: {{ dataItem.num }}
+        </p>
+      </ng-container>
+      <ng-container *ngIf="top">
+        <p *ngFor="let topItem of top; let i = index">
+          {{i+1}}. {{ topItem.name }}: {{ topItem.number }}
+        </p>
+      </ng-container>
+    </div>
+  </div>
+</div>

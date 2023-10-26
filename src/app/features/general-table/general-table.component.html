@@ -1,0 +1,53 @@
+<ng-container *ngIf="loading">
+  <app-loader></app-loader>
+</ng-container>
+
+<div class="container" *ngIf="filteredCredits$ | async as filteredCredits">
+  <h1>Credit Table</h1>
+
+
+  <form [formGroup]="filtersForm" class="row mb-3 filters">
+    <div class="col-md-4">
+      <label>Початок:</label>
+      <input type="date" formControlName="startDate" (input)="updateStartDate()" class="form-control" placeholder="Start Date">
+    </div>
+    <div class="col-md-4">
+      <label>Кінець:</label>
+      <input type="date" formControlName="endDate" (input)="updateEndDate()" class="form-control" placeholder="End Date">
+    </div>
+    <div class="col-md-4">
+      <label><input type="checkbox" formControlName="showOverdue" (change)="updateShowOverdue()">Show Overdue</label>
+    </div>
+  </form>
+
+  <ng-container >
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <ng-container *ngFor="let key of getObjectKeys(filteredCredits[0])">
+            <th>{{ key }}</th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let credit of getPageData(filteredCredits)">
+          <td>{{ credit.id }}</td>
+          <td>{{ credit.user }}</td>
+          <td>{{ credit.issuance_date }}</td>
+          <td>{{ credit.return_date }}</td>
+          <td>{{ credit.actual_return_date }}</td>
+          <td>{{ credit.body }}</td>
+          <td>{{ credit.percent }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <app-pagination
+      [items]="filteredCredits"
+      [itemsPerPage]="10"
+      (pageChange)="setCurrentPage($event)">
+    </app-pagination>
+
+  </ng-container>
+
+</div>

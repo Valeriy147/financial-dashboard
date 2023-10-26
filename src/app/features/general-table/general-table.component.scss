@@ -1,0 +1,43 @@
+app-pagination {
+  margin-top: auto;
+}
+
+table {
+  min-height: 450px;
+}
+
+.filters {
+
+  >div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+form {
+
+  div {
+    margin: 8px 0;
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+    }
+  }
+}
+
+
+.col-md-4 label input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.table {
+  max-width: 100%;
+}
+
+@media( max-width: 560px ) {
+  .table {
+    font-size: 12px;
+  }
+}
